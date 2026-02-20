@@ -97,15 +97,15 @@
 	* `cut -f3 maize_multiple_position.txt | sort | uniq -c`: the output file does have all 11 rows with "multiple" in the position column, but also have the 6 rows with no entry. By using a combination of `head`, `tail`, and `cut`, I found that those 6 rows have "multiple" in the second column, which is the chromosome column 
 	* `wc maize_have_position.txt`: it has 940 rows. 984-27-11-6=940, meaning that step 11 is successful
 
-13. separate `maize_have_position.txt` by chromosome number  
+13. separate maize_have_position.txt` by chromosome number  
 	* `awk '$2 == 1 || $2 ~ /Chromosome/' maize_have_position.txt > maize_chr1.txt` repeat the command for 10 times by replacing the number after "==" to the corresponding chromosome number
 
-14. sort `maize_chr?.txt` in increasing order (in for increasing)
+14. sort `maize_chr*.txt` in increasing order (in for increasing)
 	* `(head -n 1 maize_chr1.txt && tail -n +2 maize_chr1.txt | sort -k3,3g) > maize_chr1_in.txt`  
 	Because the missing data is alreay represented by "?", the resulting files here are final for requirement: "10 files (1 for each chromosome) with SNPs ordered based on increasing position values and with missing data encoded by this symbol: ?".
 	
-14. sort `maize_chr?_de.txt` in decreasing order and replace missing data with  "-"  
-	* `(head -n 1 maize_chr10.txt && tail -n +2 maize_chr10.txt | sort -k3,3gr) | sed 's/?/-/g' > maize_chr10_de.txt`  
+14. sort `maize_chr*.txt`in decreasing order and replace missing data with  "-" (de for decreasing)  
+	* `(head -n 1 maize_chr1.txt && tail -n +2 maize_chr1.txt | sort -k3,3gr) | sed 's/?/-/g' > maize_chr1_de.txt`  
 	The resulting files from this step are final for the requirement: "10 files (1 for each chromosome) with SNPs ordered based on decreasing position values and with missing data encoded by this symbol: -"
 	
 15. repeat step 11 - step 14 to perform the same operation on teosinte data  

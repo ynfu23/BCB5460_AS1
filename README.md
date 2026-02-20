@@ -97,7 +97,7 @@
 	* `cut -f3 maize_multiple_position.txt | sort | uniq -c`: the output file does have all 11 rows with "multiple" in the position column, but also have the 6 rows with no entry. By using a combination of `head`, `tail`, and `cut`, I found that those 6 rows have "multiple" in the second column, which is the chromosome column 
 	* `wc maize_have_position.txt`: it has 940 rows. 984-27-11-6=940, meaning that step 11 is successful
 
-13. separate maize_have_position.txt` by chromosome number  
+13. separate `maize_have_position.txt` by chromosome number  
 	* `awk '$2 == 1 || $2 ~ /Chromosome/' maize_have_position.txt > maize_chr1.txt` repeat the command for 10 times by replacing the number after "==" to the corresponding chromosome number
 
 14. sort `maize_chr*.txt` in increasing order (in for increasing)
